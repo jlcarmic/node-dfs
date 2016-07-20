@@ -1,0 +1,31 @@
+{
+  "name": "lineup-validator",
+  "version": "1.0.0",
+  "description": "A Node library for validating a DFS lineup based on configurable business rules",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlcarmic/lineup-validator.git"
+  },
+  "keywords": [
+    "stattleship",
+    "sports",
+    "data",
+    "api"
+  ],
+  "author": "John Carmichael <jlcarmic@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jlcarmic/lineup-validator/issues"
+  },
+  "homepage": "https://github.com/jlcarmic/lineup-validator#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
