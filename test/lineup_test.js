@@ -3,7 +3,7 @@ var Lineup = require('../Lineup');
 var Player = require('../Player');
 
 describe("Lineup", function() {
-  var player1, player2;
+  var player1, player2, player3;
   before(function() {
     player1 = new Player({
       "id": 58,
@@ -17,6 +17,13 @@ describe("Lineup", function() {
       "name": "Alex Smith",
       "position": "QB",
       "salary": 6000,
+      "gameId": 21
+    });
+    player3 = new Player({
+      "id": 12,
+      "name": "Jamaal Charles",
+      "position": "RB",
+      "salary": 5500,
       "gameId": 21
     });
   });
@@ -40,6 +47,20 @@ describe("Lineup", function() {
       lu.addPlayer(player2);
 
       expect(lu.calculateTotalSalary()).to.equal(11000);
+      done();
+    });
+  });
+
+  describe("getGameList()", function() {
+    it("returns an object containing all gameIds in a lineup as keys and the frequency of each as the value", function(done) {
+      var lineup = new Lineup();
+
+      lineup.addPlayer(player1);
+      lineup.addPlayer(player2);
+      lineup.addPlayer(player3);
+
+      var expected = { "20": 1, "21": 2 };
+      expect(lineup.getGameList()).to.eql(expected);
       done();
     });
   });

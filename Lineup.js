@@ -7,6 +7,20 @@ Lineup.prototype.addPlayer = function(player) {
   this.playerList.push(player);
 };
 
+Lineup.prototype.getGameList = function() {
+  var games = {};
+
+  this.playerList.forEach(function(element, index, array) {
+    if(games[element.gameId] === undefined) {
+      games[element.gameId] = 1;
+    } else {
+      games[element.gameId]++;
+    }
+  });
+
+  return games;
+};
+
 Lineup.prototype.getPositionCount = function(position) {
   var count = 0;
 
