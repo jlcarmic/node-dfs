@@ -52,14 +52,14 @@ describe("Lineup", function() {
   });
 
   describe("getGameList()", function() {
-    it("returns an object containing all gameIds in a lineup as keys and the frequency of each as the value", function(done) {
+    it("returns an array containing all the unique gameIds in a lineup", function(done) {
       var lineup = new Lineup();
 
       lineup.addPlayer(player1);
       lineup.addPlayer(player2);
       lineup.addPlayer(player3);
 
-      var expected = { "20": 1, "21": 2 };
+      var expected = [20, 21];
       expect(lineup.getGameList()).to.eql(expected);
       done();
     });

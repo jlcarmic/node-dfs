@@ -13,12 +13,24 @@ Contest.prototype.validateLineup = function(lineup) {
     errors.push(new Error("Lineup salary exceeds maximum salary for this contest"));
   }
 
+  if(!validateMinimumGames(lineup, this.minGames)) {
+    errors.push(new Error("Unique games in lineup is less than the minimum games for this contest"));
+  }
+
   return errors;
 };
 
 // Private functions
 function validateMaximumSalary(lineup, maxSalary) {
   return (lineup.calculateTotalSalary() > maxSalary) ? false : true;
+}
+
+function validateMinimumGames(lineup, minGames) {
+  if(lineup.getGameList().length < minGames) {
+    return false;
+  } else {
+    return true;
+  }
 }
 }
 
