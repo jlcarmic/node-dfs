@@ -8,6 +8,7 @@ describe("Lineup", function() {
       "id": 58,
       "name": "John Carmichael",
       "position": "LB",
+      "team": "KC",
       "salary": 5000,
       "gameId": 20
     });
@@ -15,13 +16,15 @@ describe("Lineup", function() {
       "id": 11,
       "name": "Alex Smith",
       "position": "QB",
+      "team": "KC",
       "salary": 6000,
       "gameId": 21
     });
     player3 = new Player({
       "id": 12,
-      "name": "Jamaal Charles",
-      "position": "RB",
+      "name": "Rob Gronkowski",
+      "position": "TE",
+      "team": "NE",
       "salary": 5500,
       "gameId": 21
     });

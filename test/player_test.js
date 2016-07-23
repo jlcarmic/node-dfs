@@ -8,6 +8,7 @@ describe("Player", function() {
         "id": 58,
         "name": "John Carmichael",
         "position": "LB",
+        "team": "KC",
         "salary": 5000,
         "gameId": 20
       });
@@ -15,6 +16,7 @@ describe("Player", function() {
       expect(player.id).to.eql(58);
       expect(player.name).to.eql('John Carmichael');
       expect(player.position).to.eql('LB');
+      expect(player.team).to.eql('KC');
       expect(player.salary).to.eql(5000);
       expect(player.gameId).to.eql(20);
       done();

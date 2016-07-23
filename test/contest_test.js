@@ -11,6 +11,7 @@ describe("Contest", function() {
       "id": 58,
       "name": "John Carmichael",
       "position": "LB",
+      "team": "KC",
       "salary": 5000,
       "gameId": 20
     });
@@ -18,6 +19,7 @@ describe("Contest", function() {
       "id": 11,
       "name": "Alex Smith",
       "position": "QB",
+      "team": "KC",
       "salary": 6000,
       "gameId": 21
     });
