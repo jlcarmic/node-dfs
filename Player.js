@@ -1,15 +1,15 @@
 function Player(data) {
-  if(data.id === undefined || data.name === undefined ||
-    data.position === undefined || data.team === undefined ||
-    data.salary === undefined || data.gameId === undefined) {
+  if(data.gameId === undefined || data.id === undefined ||
+    data.name === undefined || data.position === undefined ||
+    data.salary === undefined || data.team === undefined) {
       throw new Error("Invalid Parameters");
   } else {
+    this.gameId = data.gameId;
     this.id = data.id;
     this.name = data.name;
     this.position = data.position;
-    this.team = data.team;
     this.salary = data.salary;
-    this.gameId = data.gameId;
+    this.team = data.team;
   }
 }
 

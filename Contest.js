@@ -31,13 +31,12 @@ Contest.prototype.validateLineup = function(lineup) {
 };
 
 // Private functions
-function descending(a, b) {
+function descendingSort(a, b) {
   return b - a;
 }
 
 function validateMaximumFromTeams(lineup, maxFromTeam) {
-  var counts = _.values(lineup.getTeamCounts()).sort(descending);
-  return counts[0] <= maxFromTeam;
+  return _.values(lineup.getTeamCounts()).sort(descendingSort)[0] <= maxFromTeam;
 }
 
 function validateMaximumSalary(lineup, maxSalary) {
@@ -49,8 +48,7 @@ function validateMinimumGames(lineup, minGames) {
 }
 
 function validatePositionCounts(lineup, contestPositionCounts) {
-  var teamPositionCounts = lineup.getPositionCounts();
-  return _.isEqual(contestPositionCounts, teamPositionCounts);
+  return _.isEqual(contestPositionCounts, lineup.getPositionCounts());
 }
 
 module.exports = Contest;

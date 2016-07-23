@@ -8,20 +8,20 @@ var Contest = rewire('../Contest');
 describe("Contest", function() {
   before(function() {
     player1 = new Player({
+      "gameId": 20,
       "id": 58,
       "name": "John Carmichael",
       "position": "LB",
-      "team": "KC",
       "salary": 5000,
-      "gameId": 20
+      "team": "KC"
     });
     player2 = new Player({
+      "gameId": 21,
       "id": 11,
       "name": "Alex Smith",
       "position": "QB",
-      "team": "KC",
       "salary": 6000,
-      "gameId": 21
+      "team": "KC"
     });
 
     lineup = new Lineup();

@@ -6,50 +6,50 @@ var Player = require('../Player');
 describe("Lineup", function() {
   before(function() {
     player1 = new Player({
+      "gameId": 20,
       "id": 58,
       "name": "John Carmichael",
       "position": "LB",
-      "team": "KC",
       "salary": 5000,
-      "gameId": 20
+      "team": "KC"
     });
     player2 = new Player({
+      "gameId": 21,
       "id": 11,
       "name": "Alex Smith",
       "position": "QB",
-      "team": "KC",
       "salary": 6000,
-      "gameId": 21
+      "team": "KC"
     });
     player3 = new Player({
+      "gameId": 21,
       "id": 12,
       "name": "Rob Gronkowski",
       "position": "TE",
-      "team": "NE",
       "salary": 5500,
-      "gameId": 21
+      "team": "NE"
     });
   });
 
   describe("addPlayer()", function() {
     it("adds a player to the playerlist of the lineup object", function (done) {
-      var lu = new Lineup();
+      var lineup = new Lineup();
 
-      lu.addPlayer(player1);
+      lineup.addPlayer(player1);
 
-      expect(lu.playerList).to.eql([player1]);
+      expect(lineup.playerList).to.eql([player1]);
       done();
     });
   });
 
   describe("calculateTotalSalary()", function() {
     it("returns the total salary of all players in the lineup", function (done) {
-      var lu = new Lineup();
+      var lineup = new Lineup();
 
-      lu.addPlayer(player1);
-      lu.addPlayer(player2);
+      lineup.addPlayer(player1);
+      lineup.addPlayer(player2);
 
-      expect(lu.calculateTotalSalary()).to.equal(11000);
+      expect(lineup.calculateTotalSalary()).to.equal(11000);
       done();
     });
   });
