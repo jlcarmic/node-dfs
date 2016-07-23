@@ -29,6 +29,13 @@ Lineup.prototype.getPositionCount = function(position) {
   return count;
 };
 
+Lineup.prototype.getTeamCounts = function(team) {
+  return this.playerList.reduce(function(prev, curr, ind, arr) {
+    prev[curr.team] = prev[curr.team] === undefined ? 1 : prev[curr.team]+1;
+    return prev;
+  }, {});
+};
+
 Lineup.prototype.calculateTotalSalary = function() {
   return this.playerList.reduce(function(prev, curr, ind, arr) {
     return prev + curr.salary;

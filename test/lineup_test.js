@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var expect = require('chai').expect;
 var Lineup = require('../Lineup');
 var Player = require('../Player');
@@ -76,6 +77,22 @@ describe("Lineup", function() {
 
       expect(lineup.getPositionCount('QB')).to.equal(1);
       expect(lineup.getPositionCount('WR')).to.equal(0);
+      done();
+    });
+  });
+
+  describe("getTeamCounts()", function() {
+    it("returns a list of all teams represented in a lineup and the number of players on each team (ex. { KC: 2, NE: 1 })", function (done) {
+      var lineup = new Lineup();
+
+      lineup.addPlayer(player1);
+      lineup.addPlayer(player2);
+      lineup.addPlayer(player3);
+
+      var actual = lineup.getTeamCounts();
+      var expected = { "KC": 2, "NE": 1 };
+
+      expect(_.isEqual(actual, expected)).to.equal(true);
       done();
     });
   });
