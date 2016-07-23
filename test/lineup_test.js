@@ -68,15 +68,17 @@ describe("Lineup", function() {
     });
   });
 
-  describe("getPositionCount()", function() {
-    it("returns the number of players that have a given positon", function (done) {
+  describe("getPositionCounts()", function() {
+    it("returns a list of all positions represented in a lineup and the number of players at each position (ex. { LB: 1, QB: 1 })", function (done) {
       var lineup = new Lineup();
 
       lineup.addPlayer(player1);
       lineup.addPlayer(player2);
 
-      expect(lineup.getPositionCount('QB')).to.equal(1);
-      expect(lineup.getPositionCount('WR')).to.equal(0);
+      var actual = lineup.getPositionCounts();
+      var expected = { "LB": 1, "QB": 1 };
+
+      expect(_.isEqual(actual, expected)).to.equal(true);
       done();
     });
   });

@@ -19,14 +19,11 @@ Lineup.prototype.getGameList = function() {
   return games;
 };
 
-Lineup.prototype.getPositionCount = function(position) {
-  var count = 0;
-
-  this.playerList.forEach(function(element, index, array) {
-    count += element.position == position ? 1 : 0;
-  });
-
-  return count;
+Lineup.prototype.getPositionCounts = function(position) {
+  return this.playerList.reduce(function(prev, curr, ind, arr) {
+    prev[curr.position] = prev[curr.position] === undefined ? 1 : prev[curr.position]+1;
+    return prev;
+  }, {});
 };
 
 Lineup.prototype.getTeamCounts = function(team) {
