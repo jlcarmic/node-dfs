@@ -3,7 +3,6 @@ var Lineup = require('../Lineup');
 var Player = require('../Player');
 
 describe("Lineup", function() {
-  var player1, player2, player3;
   before(function() {
     player1 = new Player({
       "id": 58,
@@ -67,25 +66,25 @@ describe("Lineup", function() {
 
   describe("getPositionCount()", function() {
     it("returns the number of players that have a given positon", function (done) {
-      var lu = new Lineup();
+      var lineup = new Lineup();
 
-      lu.addPlayer(player1);
-      lu.addPlayer(player2);
+      lineup.addPlayer(player1);
+      lineup.addPlayer(player2);
 
-      expect(lu.getPositionCount('QB')).to.equal(1);
-      expect(lu.getPositionCount('WR')).to.equal(0);
+      expect(lineup.getPositionCount('QB')).to.equal(1);
+      expect(lineup.getPositionCount('WR')).to.equal(0);
       done();
     });
   });
 
   describe("removePlayer", function() {
     it("adds a player to the playerlist of the lineup object", function (done) {
-      var lu = new Lineup();
+      var lineup = new Lineup();
 
-      lu.addPlayer(player1);
-      lu.removePlayer(player1);
+      lineup.addPlayer(player1);
+      lineup.removePlayer(player1);
 
-      expect(lu.playerList).to.eql([]);
+      expect(lineup.playerList).to.eql([]);
       done();
     });
   });

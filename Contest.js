@@ -22,15 +22,11 @@ Contest.prototype.validateLineup = function(lineup) {
 
 // Private functions
 function validateMaximumSalary(lineup, maxSalary) {
-  return (lineup.calculateTotalSalary() > maxSalary) ? false : true;
+  return lineup.calculateTotalSalary() <= maxSalary;
 }
 
 function validateMinimumGames(lineup, minGames) {
-  if(lineup.getGameList().length < minGames) {
-    return false;
-  } else {
-    return true;
-  }
+  return lineup.getGameList().length >= minGames;
 }
 }
 

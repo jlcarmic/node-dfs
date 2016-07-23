@@ -6,7 +6,6 @@ var rewire = require('rewire');
 var Contest = rewire('../Contest');
 
 describe("Contest", function() {
-  var lineup, player1, player2, priv_validateMaximumSalary, priv_validateMinimumGames;
   before(function() {
     player1 = new Player({
       "id": 58,
@@ -34,14 +33,14 @@ describe("Contest", function() {
 
   describe("validateLineup()", function() {
     it("returns an empty array when all lineup validations check out as there are no errors to report", function(done) {
-      var contest = new Contest({ "maxSalary": 50000, "positionCounts": {}, "minGames": 2, "totalFromTeam": 3 });
+      var contest = new Contest({ "maxFromTeam": 2, "maxSalary": 50000, "minGames": 2, "positionCounts": {} });
 
       expect(contest.validateLineup(lineup)).to.eql([]);
       done();
     });
 
     it("returns an array of error objects, one for each failed lineup validation", function(done) {
-      var contest = new Contest({ "maxSalary": 5000, "positionCounts": {}, "minGames": 3, "totalFromTeam": 3 });
+      var contest = new Contest({ "maxFromTeam": 1, "maxSalary": 5000, "minGames": 3, "positionCounts": {} });
       var errors = [];
 
       errors.push(new Error("Lineup salary exceeds maximum salary for this contest"));
@@ -53,14 +52,14 @@ describe("Contest", function() {
 
   describe("validateMaximumSalary()", function() {
     it("returns true when the total salary of all players in the lineup is less than the maximum salary value of the contest", function(done) {
-      var contest = new Contest({ "maxSalary": 50000, "positionCounts": {}, "minGames": 2, "totalFromTeam": 3 });
+      var contest = new Contest({ "maxFromTeam": 3, "maxSalary": 50000, "minGames": 2, "positionCounts": {} });
 
       expect(priv_validateMaximumSalary(lineup, contest.maxSalary)).to.eql(true);
       done();
     });
 
     it("returns false when the total salary of all players in the lineup exceeds the maximum salary value of the contest", function(done) {
-      var contest = new Contest({ "maxSalary": 5000, "positionCounts": {}, "minGames": 2, "totalFromTeam": 3 });
+      var contest = new Contest({ "maxFromTeam": 3, "maxSalary": 5000, "minGames": 2, "positionCounts": {} });
 
       expect(priv_validateMaximumSalary(lineup, contest.maxSalary)).to.eql(false);
       done();
@@ -69,14 +68,14 @@ describe("Contest", function() {
 
   describe("validateMinimumGames()", function() {
     it("returns true when the number of unique games in the lineup is greater than or equal to the minGames setting of the contest", function(done) {
-      var contest = new Contest({ "maxSalary": 5000, "positionCounts": {}, "minGames": 2, "totalFromTeam": 3 });
+      var contest = new Contest({ "maxFromTeam": 3, "maxSalary": 5000, "minGames": 2, "positionCounts": {} });
 
       expect(priv_validateMinimumGames(lineup, contest.minGames)).to.eql(true);
       done();
     });
 
     it("returns false when the number of unique games in the lineup is less than the minGames setting of the contest", function(done) {
-      var contest = new Contest({ "maxSalary": 5000, "positionCounts": {}, "minGames": 3, "totalFromTeam": 3 });
+      var contest = new Contest({ "maxFromTeam": 3, "maxSalary": 5000, "minGames": 3, "positionCounts": {} });
 
       expect(priv_validateMinimumGames(lineup, contest.minGames)).to.eql(false);
       done();
