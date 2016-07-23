@@ -29,6 +29,7 @@ describe("Contest", function() {
     lineup.addPlayer(player2);
 
     // Rewire private methods for testing
+    priv_validateMaximumFromTeams = Contest.__get__('validateMaximumFromTeams');
     priv_validateMaximumSalary = Contest.__get__('validateMaximumSalary');
     priv_validateMinimumGames = Contest.__get__('validateMinimumGames');
   });
@@ -45,9 +46,26 @@ describe("Contest", function() {
       var contest = new Contest({ "maxFromTeam": 1, "maxSalary": 5000, "minGames": 3, "positionCounts": {} });
       var errors = [];
 
+      errors.push(new Error("Lineup exceeds the maximum number of players from a single team for this contest"));
       errors.push(new Error("Lineup salary exceeds maximum salary for this contest"));
       errors.push(new Error("Unique games in lineup is less than the minimum games for this contest"));
       expect(contest.validateLineup(lineup)).to.eql(errors);
+      done();
+    });
+  });
+
+  describe("validateMaximumFromTeams", function() {
+    it("returns true when the total number of players on each team in a lineup is less than or equal to the maxFromTeam value of the contest", function(done) {
+      var contest = new Contest({ "maxFromTeam": 2, "maxSalary": 5000, "minGames": 3, "positionCounts": {} });
+
+      expect(priv_validateMaximumFromTeams(lineup, contest.maxFromTeam)).to.eql(true);
+      done();
+    });
+
+    it("returns false when the total number of players on a team in a lineup is greater than the maxFromTeam value of the contest", function(done) {
+      var contest = new Contest({ "maxFromTeam": 1, "maxSalary": 5000, "minGames": 3, "positionCounts": {} });
+
+      expect(priv_validateMaximumFromTeams(lineup, contest.maxFromTeam)).to.eql(false);
       done();
     });
   });
