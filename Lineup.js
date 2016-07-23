@@ -7,16 +7,11 @@ Lineup.prototype.addPlayer = function(player) {
   this.playerList.push(player);
 };
 
-Lineup.prototype.getGameList = function() {
-  var games = [];
-
-  this.playerList.forEach(function(element, index, array) {
-    if(games.indexOf(element.gameId) === -1) {
-      games.push(element.gameId);
-    }
-  });
-
-  return games;
+Lineup.prototype.getGameCounts = function() {
+  return this.playerList.reduce(function(prev, curr, ind, arr) {
+    prev[curr.gameId] = prev[curr.gameId] === undefined ? 1 : prev[curr.gameId]+1;
+    return prev;
+  }, {});
 };
 
 Lineup.prototype.getPositionCounts = function(position) {

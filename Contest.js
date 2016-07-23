@@ -45,12 +45,11 @@ function validateMaximumSalary(lineup, maxSalary) {
 }
 
 function validateMinimumGames(lineup, minGames) {
-  return lineup.getGameList().length >= minGames;
+  return _.keys(lineup.getGameCounts()).length >= minGames;
 }
 
 function validatePositionCounts(lineup, contestPositionCounts) {
   var teamPositionCounts = lineup.getPositionCounts();
-
   return _.isEqual(contestPositionCounts, teamPositionCounts);
 }
 

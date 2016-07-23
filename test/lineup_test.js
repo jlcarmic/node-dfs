@@ -54,16 +54,18 @@ describe("Lineup", function() {
     });
   });
 
-  describe("getGameList()", function() {
-    it("returns an array containing all the unique gameIds in a lineup", function(done) {
+  describe("getGameCounts()", function() {
+    it("returns an list of all games represented in a lineup and the number of players participating in each hame (ex. { 20: 1, 21: 2 })", function(done) {
       var lineup = new Lineup();
 
       lineup.addPlayer(player1);
       lineup.addPlayer(player2);
       lineup.addPlayer(player3);
 
-      var expected = [20, 21];
-      expect(lineup.getGameList()).to.eql(expected);
+      var actual = lineup.getGameCounts();
+      var expected = { "20": 1, "21": 2 };
+
+      expect(_.isEqual(actual, expected)).to.equal(true);
       done();
     });
   });
