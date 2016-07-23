@@ -31,16 +31,13 @@ Contest.prototype.validateLineup = function(lineup) {
 };
 
 // Private functions
+function descending(a, b) {
+  return b - a;
+}
+
 function validateMaximumFromTeams(lineup, maxFromTeam) {
-  var counts = lineup.getTeamCounts();
-
-  for(var team in counts) {
-    if(counts[team] > maxFromTeam) {
-      return false;
-    }
-  }
-
-  return true;
+  var counts = _.values(lineup.getTeamCounts()).sort(descending);
+  return counts[0] <= maxFromTeam;
 }
 
 function validateMaximumSalary(lineup, maxSalary) {
