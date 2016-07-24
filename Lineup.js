@@ -20,14 +20,14 @@ Lineup.prototype.getGameCounts = function() {
   }, {});
 };
 
-Lineup.prototype.getPositionCounts = function(position) {
+Lineup.prototype.getPositionCounts = function() {
   return this.playerList.reduce(function(prev, curr, ind, arr) {
     prev[curr.position] = prev[curr.position] === undefined ? 1 : prev[curr.position]+1;
     return prev;
   }, {});
 };
 
-Lineup.prototype.getTeamCounts = function(team) {
+Lineup.prototype.getTeamCounts = function() {
   return this.playerList.reduce(function(prev, curr, ind, arr) {
     prev[curr.team] = prev[curr.team] === undefined ? 1 : prev[curr.team]+1;
     return prev;
