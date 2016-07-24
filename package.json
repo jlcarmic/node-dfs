@@ -1,7 +1,7 @@
 {
   "name": "node-dfs",
   "version": "1.0.0",
-  "description": "A Node library for Daily Fantasy Sports consisting on Contests with configurable business rules as well as Player and Lineup objects",
+  "description": "A Node library for Daily Fantasy Sports consisting of Contests with configurable business rules as well as Player and Lineup objects",
   "main": "./index",
   "scripts": {
     "test": "mocha test"

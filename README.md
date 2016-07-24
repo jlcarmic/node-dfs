@@ -1,4 +1,4 @@
-A Node library for Daily Fantasy Sports (DFS) consisting on Contests with configurable business rules as well as Player and Lineup objects.
+A Node library for Daily Fantasy Sports (DFS) consisting of Contests with configurable business rules as well as Player and Lineup objects.
 
 # Installation
 `npm install node-dfs`
@@ -8,7 +8,7 @@ A Node library for Daily Fantasy Sports (DFS) consisting on Contests with config
 ## Contest
 A Contest represents a DFS contest for which a lineup of players will be entered.
 
-```
+```javascript
 var dfs = require('node-dfs');
 
 var contest = new dfs.Contest({
@@ -23,14 +23,14 @@ var contest = new dfs.Contest({
 
 Validates the given lineup against the rules of the calling contest. Returns an array of error objects representing each failed validation.
 
-```
+```javascript
 var errors = contest.validateLineup(lineup);
 ```
 
 ## Lineup
 A Lineup represents a collection of players which will be used in a DFS contest.
 
-```
+```javascript
 var dfs = require('node-dfs');
 
 var lineup = new dfs.Lineup();
@@ -40,7 +40,7 @@ var lineup = new dfs.Lineup();
 
 Adds the provided player to the lineup objects playerList attribute.
 
-```
+```javascript
 lineup.addPlayer(player);
 ```
 
@@ -48,7 +48,7 @@ lineup.addPlayer(player);
 
 Iterates over the playerList for the calling lineup and returns an integer than represents the sum of all players' salary attributes.
 
-```
+```javascript
 var total = lineup.calculateTotalSalary();
 ```
 Returns: `49000`
@@ -57,7 +57,7 @@ Returns: `49000`
 
 Iterates over the playerList for the calling lineup and returns an object. The object's keys are the unique list of games being played in by players in the calling lineup each with a value that is the count of players participating in the game from the calling lineup.
 
-```
+```javascript
 var games = lineup.getGameCounts();
 ```
 Returns: `{ 12: 1, 6: 3, 2: 2, 7: 3, 3: 2 }`)
@@ -66,7 +66,7 @@ Returns: `{ 12: 1, 6: 3, 2: 2, 7: 3, 3: 2 }`)
 
 Iterates over the playerList for the calling lineup and returns an object. The object's keys are the unique positions played by players in the calling lineup each with a value that is the count of players at each position from the calling lineup.
 
-```
+```javascript
 var games = lineup.getPositionCounts();
 ```
 Returns: `{ "QB": 1, "RB": 2, "WR": 3, "TE": 1 }`)
@@ -75,7 +75,7 @@ Returns: `{ "QB": 1, "RB": 2, "WR": 3, "TE": 1 }`)
 
 Iterates over the playerList for the calling lineup and returns an object. The object's keys are the unique list of teams being played for by players in the calling lineup each with a value that is the count of players playing for that team from the calling lineup.
 
-```
+```javascript
 var games = lineup.getTeamCounts();
 ```
 Returns: `{ "KC": 2, "NE": 3, "PHI": 1, "SF": 1, "JAX": 2 }`)
@@ -84,14 +84,14 @@ Returns: `{ "KC": 2, "NE": 3, "PHI": 1, "SF": 1, "JAX": 2 }`)
 
 Removes the provided player from the lineup objects playerList attribute.
 
-```
+```javascript
 lineup.removePlayer(player);
 ```
 
 ## Player
 A Player represents an athlete taking part in a professional sports game which will be added to a lineup to be used in a DFS contest.
 
-```
+```javascript
 var dfs = require('node-dfs');
 
 var player = new dfs.Player({
