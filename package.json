@@ -1,28 +1,30 @@
 {
-  "name": "lineup-validator",
+  "name": "node-dfs",
   "version": "1.0.0",
   "description": "A Node library for Daily Fantasy Sports consisting on Contests with configurable business rules as well as Player and Lineup objects",
-  "main": "index.js",
+  "main": "./index",
   "scripts": {
     "test": "mocha test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jlcarmic/lineup-validator.git"
+    "url": "git+https://github.com/jlcarmic/node-dfs.git"
   },
   "keywords": [
     "api",
     "dailyfantasy",
     "data",
+    "draftkings",
+    "fanduel",
     "fantasysports",
     "sports"
   ],
-  "author": "John Carmichael <jlcarmic@gmail.com>",
+  "author": "John Carmichael <jlcarmic@gmail.com> (http://johncarmichael.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jlcarmic/lineup-validator/issues"
+    "url": "https://github.com/jlcarmic/node-dfs/issues"
   },
-  "homepage": "https://github.com/jlcarmic/lineup-validator#readme",
+  "homepage": "https://github.com/jlcarmic/node-dfs#readme",
   "dependencies": {
     "underscore": "^1.8.3"
   },
