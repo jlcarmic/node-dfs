@@ -1,54 +1,60 @@
-var _ = require('underscore');
+const descendingSort = (a, b) => b - a
 
-function Contest(data) {
-  this.maxFromTeam = data.maxFromTeam === undefined ? 3 : data.maxFromTeam;
-  this.maxSalary = data.maxSalary === undefined ? 50000 : data.maxSalary;
-  this.minGames = data.minGames === undefined ? 2 : data.minGames;
-  this.positionCounts = data.positionCounts === undefined ? {} : data.positionCounts;
-}
-
-// Public functions
-Contest.prototype.validateLineup = function(lineup) {
-  var errors = [];
-
-  if(!validateMaximumFromTeams(lineup, this.maxFromTeam)) {
-    errors.push(new Error("Lineup exceeds the maximum number of players from a single team for this contest"));
+class Contest {
+  constructor({ maxFromTeam, maxSalary, minGames, positionCounts }) {
+    this.maxFromTeam = maxFromTeam || 3
+    this.maxSalary = maxSalary || 50000
+    this.minGames = minGames || 2
+    this.positionCounts = positionCounts || {}
   }
 
-  if(!validateMaximumSalary(lineup, this.maxSalary)) {
-    errors.push(new Error("Lineup salary exceeds maximum salary for this contest"));
+  validateLineup(lineup) {
+    const errors = []
+
+    if (!this.validateMaximumFromTeams(lineup)) {
+      errors.push(new Error('Lineup exceeds the maximum number of players from a single team for this contest'))
+    }
+
+    if (!this.validateMaximumSalary(lineup)) {
+      errors.push(new Error('Lineup salary exceeds maximum salary for this contest'))
+    }
+
+    if (!this.validateMinimumGames(lineup)) {
+      errors.push(new Error('Unique games in lineup is less than the minimum games for this contest'))
+    }
+
+    if (!this.validatePositionCounts(lineup)) {
+      // eslint-disable-next-line max-len
+      errors.push(new Error('Lineup must not have greater than or fewer players at any position than the number indicated in settings'))
+    }
+
+    return errors
   }
 
-  if(!validateMinimumGames(lineup, this.minGames)) {
-    errors.push(new Error("Unique games in lineup is less than the minimum games for this contest"));
+  validateMaximumFromTeams(lineup) {
+    return Object.values(lineup.getTeamCounts()).sort(descendingSort)[0] <= this.maxFromTeam
   }
 
-  if(!validatePositionCounts(lineup, this.positionCounts)) {
-    errors.push(new Error("Lineup must not have greater than or fewer players at any position than the number indicated in settings"));
+  validateMaximumSalary(lineup) {
+    return lineup.calculateTotalSalary() <= this.maxSalary
   }
 
-  return errors;
-};
+  validateMinimumGames(lineup) {
+    return Object.keys(lineup.getGameCounts()).length >= this.minGames
+  }
 
-// Private functions
-function descendingSort(a, b) {
-  return b - a;
+  validatePositionCounts(lineup) {
+    const lineupPositionCounts = lineup.getPositionCounts()
+
+    const lineupPositions = Object.keys(lineupPositionCounts).sort()
+    const contestPositions = Object.keys(this.positionCounts).sort()
+
+    if (lineupPositions.length !== contestPositions.length) return false
+
+    return contestPositions.every((pos, i) => (
+      pos === lineupPositions[i] && this.positionCounts[pos] === lineupPositionCounts[pos]
+    ))
+  }
 }
 
-function validateMaximumFromTeams(lineup, maxFromTeam) {
-  return _.values(lineup.getTeamCounts()).sort(descendingSort)[0] <= maxFromTeam;
-}
-
-function validateMaximumSalary(lineup, maxSalary) {
-  return lineup.calculateTotalSalary() <= maxSalary;
-}
-
-function validateMinimumGames(lineup, minGames) {
-  return _.keys(lineup.getGameCounts()).length >= minGames;
-}
-
-function validatePositionCounts(lineup, contestPositionCounts) {
-  return _.isEqual(contestPositionCounts, lineup.getPositionCounts());
-}
-
-module.exports = Contest;
+module.exports = Contest

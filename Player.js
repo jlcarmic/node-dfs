@@ -1,16 +1,18 @@
-function Player(data) {
-  if(data.gameId === undefined || data.id === undefined ||
-    data.name === undefined || data.position === undefined ||
-    data.salary === undefined || data.team === undefined) {
-      throw new Error("Invalid Parameters");
-  } else {
-    this.gameId = data.gameId;
-    this.id = data.id;
-    this.name = data.name;
-    this.position = data.position;
-    this.salary = data.salary;
-    this.team = data.team;
+class Player {
+  constructor(data) {
+    const {
+      gameId, id, name, position, salary, team,
+    } = data
+
+    if (!gameId || !id || !name || !position || !salary || !team) throw new Error('Invalid Parameters')
+
+    this.gameId = gameId
+    this.id = id
+    this.name = name
+    this.position = position
+    this.salary = salary
+    this.team = team
   }
 }
 
-module.exports = Player;
+module.exports = Player
