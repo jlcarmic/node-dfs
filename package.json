@@ -21,7 +21,7 @@
     "fantasysports",
     "sports"
   ],
-  "author": "John Carmichael <jlcarmic@gmail.com> (http://johncarmichael.me)",
+  "author": "John Carmichael (http://johncarmichael.me)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jlcarmic/node-dfs/issues"
